@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <label>Endereço
+        <input type="text" placeholder="Digite um endereço" style="width: 90%;" id="endereco">
+        </label>
+        <input type="button" onclick="requisitar()" value="Enviar">
+        
+    </form>
+    <div>
+        <h1>Reposta</h1>
+        <div id="resp"></div>
+    </div>
+
+    <script>
+
+        function requisitar(){
+
+            let texto = document.getElementById('endereco')
+            let resp = document.getElementById('resp')
+
+            var endereco = texto.value
+            var requestOptions = {
+            method: 'GET',
+            };
+
+            fetch("https://api.geoapify.com/v1/geocode/search?text="+endereco+"&apiKey=1f3dea862efb400ba00e3ed4d9169353", requestOptions)
+            .then(response => response.json())
+            .then(result => resp.innerHTML = JSON.stringify(result.features))
+            .catch(error => console.log('error', error));
+
+
+
+
+        }
+        
+    
+
+
+
+
+    </script>
+    
+</body>
+</html>
