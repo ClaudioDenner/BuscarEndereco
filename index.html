@@ -4,49 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <title>Consultar Localização</title>
 </head>
-<body>
-    <form>
-        <label>Endereço
-        <input type="text" placeholder="Digite um endereço" style="width: 90%;" id="endereco">
-        </label>
-        <input type="button" onclick="requisitar()" value="Enviar">
+<body id="app">
+  
+    <form id="form">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Digite um endereço:</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">Veja o resultado da sua pesquisa após preencher um endereço e clicar em pesquisar</div>
+        </div>
+      
+
+      </form>
+      <button class="btn btn-primary" onclick="requisitar()" id="btn">Pesquisar</button>
+
+      
+
+      <div class="result">
+
+        <h3>Resultado(s):</h3>
+
+      </div>
+
+      <div class="text-center" id="load">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+        <div id="resp" class="resp">
         
-    </form>
-    <div>
-        <h1>Reposta</h1>
-        <div id="resp"></div>
-    </div>
-
-    <script>
-
-        function requisitar(){
-
-            let texto = document.getElementById('endereco')
-            let resp = document.getElementById('resp')
-
-            var endereco = texto.value
-            var requestOptions = {
-            method: 'GET',
-            };
-
-            fetch("https://api.geoapify.com/v1/geocode/search?text="+endereco+"&apiKey=1f3dea862efb400ba00e3ed4d9169353", requestOptions)
-            .then(response => response.json())
-            .then(result => resp.innerHTML = JSON.stringify(result.features))
-            .catch(error => console.log('error', error));
-
-
-
-
-        }
-        
+         
+          
+        </div>
+  
     
 
 
-
-
-    </script>
+    <script src="script.js"></script>
     
 </body>
 </html>
